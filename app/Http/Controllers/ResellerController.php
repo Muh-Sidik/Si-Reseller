@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ResellerController extends Controller
 {
-    
+
     public function store(Request $request)
     {
         $validate = $request->validate([
@@ -24,13 +24,13 @@ class ResellerController extends Controller
         ]);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Reseller Berhasil ditambah!");
+            Alert::success("Berhasil!", "Data Reseller Berhasil ditambah!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Reseller Gagal ditambah!");
+            Alert::error("Gagal", "Data Reseller Gagal ditambah!");
             return redirect()->back();
         }
-        
+
     }
 
     public function update(Request $request, $id)
@@ -41,17 +41,17 @@ class ResellerController extends Controller
             'domisili'      =>  "required",
         ]);
 
-        $query = Reseller::find($id)->pdate([
+        $query = Reseller::find($id)->update([
             'nama_reseller' => $request->nama_reseller,
             'no_wa'         => $request->no_wa,
             'domisili'      => $request->domisili,
         ]);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Reseller Berhasil diubah!");
+            Alert::success("Berhasil!", "Data Reseller Berhasil diubah!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Reseller Gagal diubah!");
+            Alert::error("Gagal", "Data Reseller Gagal diubah!");
             return redirect()->back();
         }
     }
@@ -61,10 +61,10 @@ class ResellerController extends Controller
         $query = Reseller::destroy($id);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Reseller Berhasil dihapus!");
+            Alert::success("Berhasil!", "Data Reseller Berhasil dihapus!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Reseller Gagal dihapus!");
+            Alert::error("Gagal", "Data Reseller Gagal dihapus!");
             return redirect()->back();
         }
     }

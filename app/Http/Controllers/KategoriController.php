@@ -33,7 +33,7 @@ class KategoriController extends Controller
             'nama_kategori' => "required",
         ]);
 
-        $query = Kategori::find($id)->pdate([
+        $query = Kategori::find($id)->update([
             'nama_kategori' => $request->nama_kategori,
         ]);
 

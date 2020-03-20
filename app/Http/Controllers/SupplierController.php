@@ -39,7 +39,7 @@ class SupplierController extends Controller
             'no_hp'         => "required|numeric",
         ]);
 
-        $query = Supplier::find($id)->pdate([
+        $query = Supplier::find($id)->update([
             'nama_supplier' => $request->nama_supplier,
             'alamat'        => $request->alamat,
             'no_hp'         => $request->no_hp,
@@ -66,5 +66,5 @@ class SupplierController extends Controller
             return redirect()->back();
         }
     }
-    
+
 }

@@ -16,3 +16,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/page/{page}', 'DashboardController@index');
+
+//route web
+Route::resource('/page/reseller', 'ResellerController');
+Route::resource('/page/supplier', 'SupplierController');
+Route::resource('/page/barang', 'BarangController');
+Route::resource('/page/kategori', 'KategoriController');

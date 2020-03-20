@@ -27,10 +27,10 @@ class BarangController extends Controller
         ]);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Barang Berhasil ditambah!");
+            Alert::success("Berhasil!", "Data Barang Berhasil ditambah!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Barang Gagal ditambah!");
+            Alert::error("Gagal", "Data Barang Gagal ditambah!");
             return redirect()->back();
         }
     }
@@ -45,7 +45,7 @@ class BarangController extends Controller
             'id_kategori'   => "required",
         ]);
 
-        $query = Barang::find($id)->pdate([
+        $query = Barang::find($id)->update([
             'nama_barang'   => $request->nama_barang,
             'harga_barang'  => $request->harga_barang,
             'jumlah_barang' => $request->jumlah_barang,
@@ -54,10 +54,10 @@ class BarangController extends Controller
         ]);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Barang Berhasil diubah!");
+            Alert::success("Berhasil!", "Data Barang Berhasil diubah!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Barang Gagal diubah!");
+            Alert::error("Gagal", "Data Barang Gagal diubah!");
             return redirect()->back();
         }
     }
@@ -67,10 +67,10 @@ class BarangController extends Controller
         $query = Barang::destroy($id);
 
         if ($query) {
-            Alert::success("Berhasil!", "Nama Barang Berhasil dihapus!");
+            Alert::success("Berhasil!", "Data Barang Berhasil dihapus!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Nama Barang Gagal dihapus!");
+            Alert::error("Gagal", "Data Barang Gagal dihapus!");
             return redirect()->back();
         }
     }
