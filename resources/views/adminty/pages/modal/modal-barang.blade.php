@@ -37,7 +37,6 @@
                         <label>Jumlah Barang</label>
                         <div class="input-group">
                             <input type="text" name="jumlah_barang" onkeypress="return goodchars(event,'1234567890',this)" class="form-control @error('jumlah_barang') is-invalid @enderror" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
-                            <span class="input-group-addon" id="basic-addon3">Hari</span>
                         </div>
                         @error('jumlah_barang')
                             <div class="invalid-feedback">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\Kategori;
+use App\Order_Supplier;
 use App\Reseller;
 use App\Supplier;
 use Illuminate\Http\Request;
@@ -23,8 +24,16 @@ class DashboardController extends Controller
                                 ->join('kategori', 'kategori.id', '=', 'barang.id_kategori')
                                 ->select('*', 'supplier.id AS id_supp', 'barang.id as id_barang', 'kategori.id as id_kategori')
                                 ->get();
+
                 $data['supplier'] = Supplier::get();
+
                 $data['kategori'] = Kategori::get();
+
+                $data['order'] = Order_Supplier::join('barang', 'barang.id', '=', 'order_supplier.id_barang')
+                                ->join('supplier', 'supplier.id', '=', 'order_supplier.id_supplier')
+                                ->join('kategori', 'kategori.id', '=', 'order_supplier.id_kategori')
+                                ->select('*', 'order_supplier.id as id_order', 'barang.id as id_barang', 'supplier.id as id_supp', 'kategori.id as id_kategori')
+                                ->get();
 
             }elseif ($page === 'data-kategori') {
                 $data['title'] = 'Data Kategori';
@@ -39,7 +48,17 @@ class DashboardController extends Controller
                 $data['data'] = Supplier::get();
 
             } elseif ($page === 'alokasi-supplier') {
-                # code...
+                $data['title'] = "Tambah Stock Barang";
+
+                $data['data'] = Supplier::get();
+
+
+                $data['order'] = Order_Supplier::join('barang', 'barang.id', '=', 'order_supplier.id_barang')
+                ->join('supplier', 'supplier.id', '=', 'order_supplier.id_supplier')
+                ->join('kategori', 'kategori.id', '=', 'order_supplier.id_kategori')
+                ->select('*', 'order_supplier.id as id_order', 'barang.id as id_barang', 'supplier.id as id_supp', 'kategori.id as id_kategori')
+                ->get();
+
             } elseif ($page === 'alokasi-reseller') {
                 # code...
             }

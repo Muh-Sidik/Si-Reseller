@@ -1,4 +1,4 @@
-<div class="modal fade" id="updateModal{{$ds->id}}" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
+<div class="modal fade" id="updateModal{{$ds->id_barang}}" tabindex="-1" role="dialog" aria-labelledby="updateModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -59,7 +59,7 @@
                                 $select = '';
                             @endphp
                             @endif
-                            <option {{$select}} value="{{$supp->id}}">{{$supp->nama_kategori}}</option>
+                            <option {{$select}} value="{{$supp->id}}">{{$supp->nama_supplier}}</option>
                             @endforeach
                         </select>
                         @error('id_supplier')

@@ -44,10 +44,10 @@
                             <td>{{$ds->nama_kategori}}</td>
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="">
-                                    <button type="button"  class="btn btn-success" data-toggle="modal" data-target="#updateModal{{$ds->id}}">
+                                    <button type="button"  class="btn btn-success" data-toggle="modal" data-target="#updateModal{{$ds->id_barang}}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </button>
-                                    <button type="submit" data-toggle="modal" data-target="#deleteModal{{$ds->id}}"  class="btn btn-danger btn-delete">
+                                    <button type="submit" data-toggle="modal" data-target="#deleteModal{{$ds->id_barang}}"  class="btn btn-danger btn-delete">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -64,6 +64,50 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md">
+        <h4 class="font-weight-bold pb-3 text-center">Riwayat Order</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card p-3">
+            <div class="table-responsive-sm">
+                <table class="table datatable table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr>
+                            <th width="3%" scope="col">No.</th>
+                            <th scope="col" width="120px" class="text-center">Tanggal</th>
+                            <th scope="col" width="120px" class="text-center">Nama Barang</th>
+                            <th scope="col" width="120px" class="text-center">Supplier</th>
+                            <th scope="col" width="120px" class="text-center">Kategori</th>
+                            <th scope="col" width="120px" class="text-center">Total Order</th>
+                            <th scope="col" width="120px" class="text-center">Total Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($order as $or)
+                        <tr>
+                            <th class="text-center" scope="row">{{$no++}}</th>
+                            <td>{{date('d-m-Y', strtotime($or->created_at))}}</td>
+                            <td>{{$or->nama_barang}}</td>
+                            <td>{{$or->nama_supplier}}</td>
+                            <td>{{$or->nama_kategori}}</td>
+                            <td>{{$or->total_order}}</td>
+                            <td>Rp. {{number_format($or->total_harga,0,',','.')}}</td>
+                        </tr>
+                        @include('adminty.pages.delete.modal-order')
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 

@@ -135,7 +135,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="{{ url("") }}">
+                                            <a href="{{ url("/page/alokasi-supplier") }}">
                                             <span class="pcoded-mtext">Supplier</span>
                                         </a>
                                         </li>

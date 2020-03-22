@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteModal{{$ds->id_barang}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+<div class="modal fade" id="deleteModal{{$or->id_order}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
@@ -13,7 +13,7 @@
 
         </div>
             <div class="modal-footer">
-                <form action="{{route('barang.destroy', $ds->id_barang)}}" method="POST">
+                <form action="{{route('order.delete', $or->id_order)}}" method="POST">
                                     @csrf
                                     @method('delete')
                 <button type="submit" class="btn btn-danger">Hapus</button>

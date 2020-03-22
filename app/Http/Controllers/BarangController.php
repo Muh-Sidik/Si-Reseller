@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Order_Supplier;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -71,6 +72,37 @@ class BarangController extends Controller
             return redirect()->back();
         } else {
             Alert::error("Gagal", "Data Barang Gagal dihapus!");
+            return redirect()->back();
+        }
+    }
+
+    public function stock(Request $request,$id_barang)
+    {
+        $validate = $request->validate([
+            'total_order'   => 'required',
+        ]);
+
+        $input = $request->input('total_order');
+        $find = Barang::find($id_barang);
+        $total = $find->harga_barang *= $input;
+
+        $query = Order_Supplier::create([
+            'id_barang' => $request->id_barang,
+            'id_supplier' => $request->id_supplier,
+            'id_kategori' => $request->id_kategori,
+            'total_order' => $input,
+            'total_harga' => $total,
+        ]);
+
+        $barang = Barang::find($id_barang);
+        $barang->jumlah_barang += $input;
+
+
+        if ($barang->save() && $query){
+            Alert::success("Berhasil", "Stock ". $barang->nama_barang ." ditambah ". $input);
+            return redirect()->back();
+        } else {
+            Alert::error("Gagal", "Stock Barang Gagal ditambah!");
             return redirect()->back();
         }
     }
