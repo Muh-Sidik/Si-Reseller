@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label >Nomor Whatsapp</label>
-                        <input type="text" name="no_wa" value="{{ $ds->no_wa }}" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" required placeholder="Masukkan Nomor">
+                        <input type="text" name="no_wa" onkeypress="return goodchars(event,'1234567890',this)" value="{{ $ds->no_wa }}" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" required placeholder="Masukkan Nomor">
                         @error('no_wa')
                             <div class="invalid-feedback">
                                 Nomor Whatsapp harus diisi!

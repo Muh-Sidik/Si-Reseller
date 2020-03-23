@@ -24,6 +24,7 @@
                             <th width="3%" scope="col">No.</th>
                             <th scope="col" width="120px" class="text-center">Nama Barang</th>
                             <th scope="col" width="120px" class="text-center">Harga</th>
+                            <th scope="col" width="120px" class="text-center">Harga Jual</th>
                             <th scope="col" width="120px" class="text-center">Jumlah</th>
                             <th scope="col" width="120px" class="text-center">Supplier</th>
                             <th scope="col" width="120px" class="text-center">Kategori</th>
@@ -39,7 +40,12 @@
                             <th class="text-center" scope="row">{{$no++}}</th>
                             <td>{{$ds->nama_barang}}</td>
                             <td>Rp. {{number_format($ds->harga_barang,0,',','.')}}</td>
+                            <td>Rp. {{number_format($ds->harga_jual,0,',','.')}}</td>
+                            @if ($ds->jumlah_barang > 0)
                             <td>{{$ds->jumlah_barang}}</td>
+                            @else
+                            <td>0</td>
+                            @endif
                             <td>{{$ds->nama_supplier}}</td>
                             <td>{{$ds->nama_kategori}}</td>
                             <td class="text-center">
@@ -75,7 +81,7 @@
     <div class="col-md">
         <div class="card p-3">
             <div class="table-responsive-sm">
-                <table class="table datatable table-bordered table-hover">
+                <table class="table datatable table-bordered table-hover table-responsive-sm">
                     <thead class="text-center">
                         <tr>
                             <th width="3%" scope="col">No.</th>
@@ -84,7 +90,7 @@
                             <th scope="col" width="120px" class="text-center">Supplier</th>
                             <th scope="col" width="120px" class="text-center">Kategori</th>
                             <th scope="col" width="120px" class="text-center">Total Order</th>
-                            <th scope="col" width="120px" class="text-center">Total Harga</th>
+                            <th scope="col" width="120px" class="text-center">Total Harga Beli</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -101,7 +107,6 @@
                             <td>{{$or->total_order}}</td>
                             <td>Rp. {{number_format($or->total_harga,0,',','.')}}</td>
                         </tr>
-                        @include('adminty.pages.delete.modal-order')
                         @endforeach
                     </tbody>
                 </table>

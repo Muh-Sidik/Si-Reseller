@@ -34,12 +34,14 @@
                             </div>
                         @enderror
                     </div>
+                    <input type="hidden" value="{{ $ds->jumlah_barang }}" name="jumlah_barang" onkeypress="return goodchars(event,'1234567890',this)" class="form-control @error('jumlah_barang') is-invalid @enderror" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
                     <div class="form-group">
-                        <label>Jumlah Barang</label>
+                        <label>Harga Jual</label>
                         <div class="input-group">
-                            <input type="text" value="{{ $ds->jumlah_barang }}" name="jumlah_barang" onkeypress="return goodchars(event,'1234567890',this)" class="form-control @error('jumlah_barang') is-invalid @enderror" id="jumlah_barang" placeholder="Masukkan Jumlah Barang">
+                            <span class="input-group-addon" id="basic-addon3">Rp.</span>
+                            <input type="text" value="{{ $ds->harga_jual }}" name="harga_jual" onkeypress="return goodchars(event,'1234567890',this)" class="form-control @error('harga_jual') is-invalid @enderror" id="harga_jual" placeholder="Masukkan Harga Jual">
                         </div>
-                        @error('jumlah_barang')
+                        @error('harga_jual')
                             <div class="invalid-feedback">
                                 Jumlah harus diisi!
                             </div>

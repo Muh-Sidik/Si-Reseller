@@ -94,7 +94,7 @@
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="{{ asset('files\assets\images\avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                                        <span>{{ Auth::user()->username }}</span>
+                                        <span>{{ Auth::user() }}</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -140,7 +140,7 @@
                                         </a>
                                         </li>
                                         <li class="">
-                                            <a href="{{ url("") }}">
+                                            <a href="{{ url("/page/alokasi-reseller") }}">
                                                 <span class="pcoded-mtext">Reseller</span>
                                             </a>
                                         </li>

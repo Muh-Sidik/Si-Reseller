@@ -444,6 +444,7 @@ class ComposerStaticInit085aadf521a3898a6b4dc1b67d3cd57e
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Reseller' => __DIR__ . '/../..' . '/app/Reseller.php',
+        'App\\ResellerPrice' => __DIR__ . '/../..' . '/app/ResellerPrice.php',
         'App\\Supplier' => __DIR__ . '/../..' . '/app/Supplier.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',

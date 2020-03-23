@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label >No.Hp</label>
-                        <input type="text" name="no_hp" value="{{ $ds->no_hp }}" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" required placeholder="Masukkan Nomor Hp">
+                        <input type="text" name="no_hp" onkeypress="return goodchars(event,'1234567890',this)" value="{{ $ds->no_hp }}" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" required placeholder="Masukkan Nomor Hp">
                         @error('no_hp')
                             <div class="invalid-feedback">
                                 Nomor Hp harus diisi!

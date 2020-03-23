@@ -22,7 +22,6 @@
                             <th scope="col" width="120px" class="text-center">Kategori</th>
                             <th scope="col" width="120px" class="text-center">Total Order</th>
                             <th scope="col" width="120px" class="text-center">Total Harga</th>
-                            <th scope="col" width="120px" class="text-center">Aksi</th>
 
                         </tr>
                     </thead>
@@ -39,15 +38,7 @@
                             <td>{{$or->nama_kategori}}</td>
                             <td>{{$or->total_order}}</td>
                             <td>Rp. {{number_format($or->total_harga,0,',','.')}}</td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="">
-                                    <button type="submit" data-toggle="modal" data-target="#deleteModal{{$or->id_order}}"  class="btn btn-danger btn-delete">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </td>
                         </tr>
-                        @include('adminty.pages.delete.modal-order')
                         @endforeach
                     </tbody>
                 </table>
@@ -81,18 +72,18 @@
                 <ul class="list-group">
                     @foreach ($barang as $item)
                     <li class="list-group-item">
-                        {{$item->nama_barang}}
+                        {{$item->nama_barang}}: @if($item->jumlah_barang > 0){{ $item->jumlah_barang }} pcs @else 0 pcs @endif
                             <form action="{{route('barang.stock',$item->id)}}" method="post">
                                 @csrf
                                 @method('put')
                                 <div class="form-group">
                                     <div class="input-group mt-1">
-                                        <input type="text" class="form-control @error('total_order') is-invalid @enderror" name="total_order" placeholder="Tambah Stock" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control @error('total_order') is-invalid @enderror"  onkeypress="return goodchars(event,'1234567890',this)" name="total_order" placeholder="Tambah Stock" aria-describedby="basic-addon2">
                                         <input type="hidden" name="id_barang" value="{{ $item->id }}">
                                         <input type="hidden" name="id_supplier" value="{{ $item->id_supplier}}">
                                         <input type="hidden" name="id_kategori" value="{{ $item->id_kategori}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary float-right" type="submit"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                            <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#acceptModal"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
                                         </div>
                                         @error('total_order')
                                             <div class="invalid-feedback">
@@ -100,6 +91,7 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    @include('adminty.pages.accept.modal-order-supplier')
                                 </div>
                             </form>
                         </li>

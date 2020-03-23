@@ -24,4 +24,6 @@ Route::resource('/page/barang', 'BarangController');
 Route::resource('/page/kategori', 'KategoriController');
 
 Route::put('/page/barang/tambah/{id}', ['as' => 'barang.stock', 'uses' => 'BarangController@stock']);
-Route::delete('/page/delete/order/{id}', ['as' => 'order.delete', 'uses' => 'OrderController@delete']);
+Route::delete('/page/delete/order/{id}', ['as' => 'order.delete', 'uses' => 'BarangController@delete']);
+
+Route::resource('/page/order', 'OrderResellerController');

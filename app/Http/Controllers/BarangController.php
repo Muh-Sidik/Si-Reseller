@@ -14,15 +14,16 @@ class BarangController extends Controller
         $validate = $request->validate([
             'nama_barang'   => "required",
             'harga_barang'  => "required|numeric",
-            'jumlah_barang' => "required|numeric",
             'id_supplier'   => "required",
             'id_kategori'   => "required",
+            'harga_jual'    => "required|numeric",
         ]);
 
         $query = Barang::create([
             'nama_barang'   => $request->nama_barang,
             'harga_barang'  => $request->harga_barang,
             'jumlah_barang' => $request->jumlah_barang,
+            'harga_jual'    => $request->harga_jual,
             'id_supplier'   => $request->id_supplier,
             'id_kategori'   =>  $request->id_kategori,
         ]);
@@ -41,15 +42,16 @@ class BarangController extends Controller
         $validate = $request->validate([
             'nama_barang'   => "required",
             'harga_barang'  => "required|numeric",
-            'jumlah_barang' => "required|numeric",
             'id_supplier'   => "required",
             'id_kategori'   => "required",
+            'harga_jual'    => "required|numeric",
         ]);
 
         $query = Barang::find($id)->update([
             'nama_barang'   => $request->nama_barang,
             'harga_barang'  => $request->harga_barang,
             'jumlah_barang' => $request->jumlah_barang,
+            'harga_jual'    => $request->harga_jual,
             'id_supplier'   => $request->id_supplier,
             'id_kategori'   =>  $request->id_kategori,
         ]);
@@ -79,7 +81,10 @@ class BarangController extends Controller
     public function stock(Request $request,$id_barang)
     {
         $validate = $request->validate([
-            'total_order'   => 'required',
+            'id_barang'     => "required",
+            'id_supplier'   => "required",
+            'id_kategori'   => "required",
+            'total_order'   => 'required|numeric',
         ]);
 
         $input = $request->input('total_order');
@@ -103,6 +108,26 @@ class BarangController extends Controller
             return redirect()->back();
         } else {
             Alert::error("Gagal", "Stock Barang Gagal ditambah!");
+            return redirect()->back();
+        }
+    }
+
+    public function delete($id) {
+
+        $order = Order_Supplier::find($id);
+        $total_order = $order->total_order;
+        $barang = Barang::find($order->id_barang);
+
+        Barang::find($order->id_barang)->update([
+            'jumlah_barang' => $barang->jumlah_barang -= $total_order,
+        ]);
+        $query = Order_Supplier::destroy($id);
+
+        if ($query) {
+            Alert::success("Berhasil!", "Riwayat Order Berhasil dihapus!");
+            return redirect()->back();
+        } else {
+            Alert::error("Gagal", "Riwayat Order Gagal dihapus!");
             return redirect()->back();
         }
     }
