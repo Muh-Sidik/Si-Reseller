@@ -74,27 +74,11 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="feather icon-bell"></i>
-                                        <span class="badge bg-c-pink">5</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="header-notification">
-                                <div class="dropdown-primary dropdown">
-                                    <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                                        <i class="feather icon-message-square"></i>
-                                        <span class="badge bg-c-green">3</span>
-                                    </div>
-                                </div>
-                            </li>
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="{{ asset('files\assets\images\avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
-                                        <span>{{ Auth::user() }}</span>
+                                        <span>{{ Auth::user()->username }}</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -183,16 +167,16 @@
                                 </li>
                                 <li class="">
                                     <a href="{{url('')}}">
-                                        <span class="pcoded-micon"><i class="fa fa-creative-commons"></i></span>
-                                        <span class="pcoded-mtext">Reward Poin</span>
+                                        <span class="pcoded-micon"><i class="fa fa-envelope"></i></span>
+                                        <span class="pcoded-mtext">Saran untuk Sistem</span>
                                     </a>
                                 </li>
-                                <li class="">
+                                {{-- <li class="">
                                     <a href="{{url('')}}">
                                         <span class="pcoded-micon"><i class="fa fa-file-text-o"></i></span>
                                         <span class="pcoded-mtext">Laporan</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="">
                                     <a href="{{url('logout')}}">
                                         <span class="pcoded-micon"><i class="fa fa-sign-out"></i></span>
@@ -211,9 +195,6 @@
                                         @yield('content')
                                     </div>
                                 </div>
-
-                                <div id="styleSelector">
-
                                 </div>
                             </div>
                         </div>

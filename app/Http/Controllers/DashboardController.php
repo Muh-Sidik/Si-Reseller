@@ -9,6 +9,7 @@ use App\Order_Supplier;
 use App\Reseller;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
@@ -19,6 +20,13 @@ class DashboardController extends Controller
             if ($page === 'dashboard') {
 
                 $data['title'] = "Dashboard - Si Reseller";
+
+                $data['beli_barang'] = DB::table('order_supplier')->sum('total_harga');
+                $data['jual_barang'] = DB::table('order_reseller')->sum('total_harga');
+                $data['total_barang'] = DB::table('barang')->count('id');
+                $data['total_reseller'] = DB::table('reseller')->count('id');
+                $data['total_supplier'] = DB::table('supplier')->count('id');
+                $data['total_jual'] = DB::table('order_reseller')->count('id');
 
             } elseif ($page === 'data-barang') {
                 $data['title']  = "Data Barang";
@@ -78,5 +86,14 @@ class DashboardController extends Controller
         }
 
         return view("adminty.pages.".$page, compact('page'))->with($data);
+    }
+
+    public function chartJual(Request $request) {
+        foreach ($request->bulan as $key => $value) {
+            $bulan[$key] = Order_Reseller::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', $value)->sum('total_harga');
+        }
+
+        return response()->json($bulan);
     }
 }
