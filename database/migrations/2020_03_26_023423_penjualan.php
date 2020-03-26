@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Reseller extends Migration
+class Penjualan extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('reseller', function (Blueprint $table) {
+        Schema::create('penjualan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_user');
-            $table->string('nama_reseller');
-            $table->string('no_wa');
-            $table->string('domisili');
+            $table->integer('id_reseller');
+            $table->integer('id_barang');
+            $table->integer('jumlah_jual');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class Reseller extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reseller');
+        Schema::dropIfExists('penjualan');
     }
 }

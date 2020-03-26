@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reseller;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ResellerController extends Controller
@@ -15,15 +17,24 @@ class ResellerController extends Controller
             'nama_reseller' => "required",
             'no_wa'         => 'required|numeric',
             'domisili'      =>  "required",
+            'username'      => 'required',
+            'password'      => 'required',
+        ]);
+
+        $user = User::create([
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+            'level'    => $request->level,
         ]);
 
         $query = Reseller::create([
+            'id_user'       => $user->id,
             'nama_reseller' => $request->nama_reseller,
             'no_wa'         => $request->no_wa,
             'domisili'      => $request->domisili,
         ]);
 
-        if ($query) {
+        if ($query && $user) {
             Alert::success("Berhasil!", "Data Reseller Berhasil ditambah!");
             return redirect()->back();
         } else {

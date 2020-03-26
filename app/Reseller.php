@@ -8,6 +8,6 @@ class Reseller extends Model
 {
     protected $table = "reseller";
     protected $fillable = [
-        'nama_reseller', 'no_wa', 'domisili'
+        'nama_reseller', 'no_wa', 'domisili', 'id_user'
     ];
 }

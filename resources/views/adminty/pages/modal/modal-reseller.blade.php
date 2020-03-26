@@ -22,6 +22,25 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label >Username</label>
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" required placeholder="Masukkan Username Reseller">
+                        @error('username')
+                            <div class="invalid-feedback">
+                                Username Reseller harus diisi!
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label >Password</label>
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required placeholder="Masukkan Password">
+                        @error('password')
+                            <div class="invalid-feedback">
+                                Password Reseller harus diisi!
+                            </div>
+                        @enderror
+                    </div>
+                    <input type="hidden" name="level" value="reseller" class="form-control" id="level" >
+                    <div class="form-group">
                         <label >Nomor Whatsapp</label>
                         <input type="text" name="no_wa" onkeypress="return goodchars(event,'1234567890',this)" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" required placeholder="Masukkan Nomor">
                         @error('no_wa')

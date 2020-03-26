@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
+
     public function index($page){
         if (View::exists("adminty.pages.". $page)) {
 

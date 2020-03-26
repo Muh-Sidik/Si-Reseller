@@ -1,4 +1,4 @@
-@include('adminty.header')
+@include('reseller.header')
 
 <body>
     <div class="theme-loader">
@@ -105,7 +105,7 @@
                             <div class="pcoded-navigatio-lavel">Menu Utama</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="{{url('/admin/dashboard')}}">
+                                    <a href="{{url('/reseller/dashboard')}}">
                                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                         <span class="pcoded-mtext">Dashboard</span>
                                     </a>
@@ -115,17 +115,12 @@
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fa fa-shopping-basket"></i></span>
-                                        <span class="pcoded-mtext">Alokasi Barang</span>
+                                        <span class="pcoded-mtext">Data Penjualan</span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="{{ url("/admin/alokasi-supplier") }}">
-                                            <span class="pcoded-mtext">Supplier</span>
-                                        </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{ url("/admin/alokasi-reseller") }}">
-                                                <span class="pcoded-mtext">Reseller</span>
+                                            <a href="{{ url("/reseller/penjualan") }}">
+                                            <span class="pcoded-mtext">Penjualan</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -159,7 +154,7 @@
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="{{ url("/admin/data-barang") }}">
+                                            <a href="{{ url("/reseller/data-barang") }}">
                                                 <span class="pcoded-mtext">Data Barang</span>
                                             </a>
                                         </li>
@@ -203,4 +198,4 @@
             </div>
         </div>
     </div>
-@include('adminty.footer')
+@include('reseller.footer')

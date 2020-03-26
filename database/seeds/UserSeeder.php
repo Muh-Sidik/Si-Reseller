@@ -17,6 +17,13 @@ class UserSeeder extends Seeder
             [
                 'username' => "admin",
                 'password' => bcrypt("admin"),
+                'level' => "admin",
+                'created_at' => Carbon::now()
+            ],
+            [
+                'username' => "reseller",
+                'password' => bcrypt("reseller"),
+                'level' => "reseller",
                 'created_at' => Carbon::now()
             ],
         ]);

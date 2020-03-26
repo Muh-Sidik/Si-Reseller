@@ -14,9 +14,8 @@ Route::get('logout', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/page/{page}', 'DashboardController@index');
-
+//admin
+Route::get('/admin/{page}', 'DashboardController@index');
 //route web
 Route::resource('/page/reseller', 'ResellerController');
 Route::resource('/page/supplier', 'SupplierController');
@@ -27,3 +26,9 @@ Route::put('/page/barang/tambah/{id}', ['as' => 'barang.stock', 'uses' => 'Baran
 Route::delete('/page/delete/order/{id}', ['as' => 'order.delete', 'uses' => 'BarangController@delete']);
 
 Route::resource('/page/order', 'OrderResellerController');
+
+
+//reseller
+Route::get('/reseller/{page}', "ResellerDashboard@index");
+
+
