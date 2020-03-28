@@ -139,21 +139,6 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class="">
-                                            <a href="{{ url("/admin/data-supplier") }}">
-                                            <span class="pcoded-mtext">Data Supplier</span>
-                                        </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{ url("/admin/data-reseller") }}">
-                                                <span class="pcoded-mtext">Data Reseller</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{ url("/admin/data-kategori") }}">
-                                                <span class="pcoded-mtext">Data Kategori</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
                                             <a href="{{ url("/reseller/data-barang") }}">
                                                 <span class="pcoded-mtext">Data Barang</span>
                                             </a>
