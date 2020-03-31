@@ -1,7 +1,9 @@
 @extends('adminty.layouts')
 
 @section('content')
-
+{{-- @php
+    dd($data);
+@endphp --}}
 <div class="row">
     <div class="col-md">
         <h2 class="font-weight-bold pb-3 text-center text-capitalize">Reseller Order</h2>
@@ -51,7 +53,7 @@
                             <div class="form-group col-md-6">
                                 <label for="id_reseller">Nama Reseller</label>
                                 <select id="id_reseller" name="id_reseller" class="form-control @error('id_reseller') is-invalid @enderror">
-                                    <option selected>-- Pilih Reseller --</option>
+                                    <option selected disabled>-- Pilih Reseller --</option>
                                     @foreach ($reseller as $res)
                                         <option value="{{$res->id}}">{{ $res->nama_reseller }}</option>
                                     @endforeach
@@ -65,7 +67,7 @@
                             <div class="form-group col-md-6">
                                 <label for="id_barang">Nama Barang</label>
                                 <select id="id_barang" name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
-                                    <option selected>-- Pilih Barang --</option>
+                                    <option selected disabled>-- Pilih Barang --</option>
                                     @foreach ($barang as $item)
                                         <option value="{{$item->id}}">{{ $item->nama_barang }}</option>
                                     @endforeach
@@ -86,7 +88,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <button class="btn btn-block btn-primary" type="button">
+                        <button class="btn btn-block btn-primary" type="button" data-toggle="modal" data-target="#acceptModal">
                             <i class="fa fa-plus-square" aria-hidden="true" data-toggle="modal" data-target="#acceptModal"></i>
                             Order
                         </button>

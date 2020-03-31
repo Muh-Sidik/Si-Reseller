@@ -412,6 +412,7 @@ class ComposerStaticInit085aadf521a3898a6b4dc1b67d3cd57e
 
     public static $classMap = array (
         'App\\Barang' => __DIR__ . '/../..' . '/app/Barang.php',
+        'App\\BarangReseller' => __DIR__ . '/../..' . '/app/BarangReseller.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -426,7 +427,9 @@ class ComposerStaticInit085aadf521a3898a6b4dc1b67d3cd57e
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\KategoriController' => __DIR__ . '/../..' . '/app/Http/Controllers/KategoriController.php',
         'App\\Http\\Controllers\\OrderResellerController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderResellerController.php',
+        'App\\Http\\Controllers\\PenjualanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PenjualanController.php',
         'App\\Http\\Controllers\\ResellerController' => __DIR__ . '/../..' . '/app/Http/Controllers/ResellerController.php',
+        'App\\Http\\Controllers\\ResellerDashboard' => __DIR__ . '/../..' . '/app/Http/Controllers/ResellerDashboard.php',
         'App\\Http\\Controllers\\SupplierController' => __DIR__ . '/../..' . '/app/Http/Controllers/SupplierController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -448,6 +451,7 @@ class ComposerStaticInit085aadf521a3898a6b4dc1b67d3cd57e
         'App\\Reseller' => __DIR__ . '/../..' . '/app/Reseller.php',
         'App\\Supplier' => __DIR__ . '/../..' . '/app/Supplier.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'BarangSeeder' => __DIR__ . '/../..' . '/database/seeds/BarangSeeder.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
         'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',
@@ -2088,6 +2092,7 @@ class ComposerStaticInit085aadf521a3898a6b4dc1b67d3cd57e
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'KategoriSeeder' => __DIR__ . '/../..' . '/database/seeds/KategoriSeeder.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',

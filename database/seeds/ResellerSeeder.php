@@ -17,7 +17,7 @@ class ResellerSeeder extends Seeder
                 'nama_reseller' => "Toko 1",
                 'no_wa'         => "082182918274",
                 'domisili'        => "Jogja",
-                'id_user'       => 1,
+                'id_user'       => 2,
                 'created_at'    => Carbon::now(),
             ],
         ]);

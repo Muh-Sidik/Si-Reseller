@@ -78,8 +78,8 @@ class DashboardController extends Controller
                 $data['title'] = "Reseller Order";
                 $data['reseller'] = Reseller::get();
                 $data['barang']   = Barang::get();
-                $data['data']     = Order_Reseller::join('barang', 'barang.id', '=', 'order_reseller.id_barang')
-                                    ->join('reseller', 'reseller.id', '=', 'order_reseller.id_reseller')->latest('order_reseller.created_at')
+                $data['data']     = Order_Reseller::leftJoin('barang', 'barang.id', '=', 'order_reseller.id_barang')
+                                    ->leftJoin('reseller', 'reseller.id', '=', 'order_reseller.id_reseller')->orderByDesc('order_reseller.created_at')
                                     ->get();
             }
         } else {

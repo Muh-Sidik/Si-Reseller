@@ -146,17 +146,17 @@
                                     </ul>
                                 </li>
                                 <li class="">
+                                    <a href="{{url('/reseller/profil')}}">
+                                        <span class="pcoded-micon"><i class="fa fa-user"></i></span>
+                                        <span class="pcoded-mtext">Profil</span>
+                                    </a>
+                                </li>
+                                <li class="">
                                     <a href="{{url('')}}">
                                         <span class="pcoded-micon"><i class="fa fa-envelope"></i></span>
                                         <span class="pcoded-mtext">Saran untuk Sistem</span>
                                     </a>
                                 </li>
-                                {{-- <li class="">
-                                    <a href="{{url('')}}">
-                                        <span class="pcoded-micon"><i class="fa fa-file-text-o"></i></span>
-                                        <span class="pcoded-mtext">Laporan</span>
-                                    </a>
-                                </li> --}}
                                 <li class="">
                                     <a href="{{url('logout')}}">
                                         <span class="pcoded-micon"><i class="fa fa-sign-out"></i></span>

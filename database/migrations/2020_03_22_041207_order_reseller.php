@@ -19,6 +19,7 @@ class OrderReseller extends Migration
             $table->integer('id_barang');
             $table->integer('total_order');
             $table->integer('total_harga');
+            $table->integer('keuntungan');
             $table->timestamps();
         });
     }

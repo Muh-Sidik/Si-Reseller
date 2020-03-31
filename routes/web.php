@@ -24,11 +24,12 @@ Route::resource('/page/kategori', 'KategoriController');
 
 Route::put('/page/barang/tambah/{id}', ['as' => 'barang.stock', 'uses' => 'BarangController@stock']);
 Route::delete('/page/delete/order/{id}', ['as' => 'order.delete', 'uses' => 'BarangController@delete']);
+Route::put('/page/update/user/{id}', ['as' => 'user.edit','uses' => 'ResellerController@change']);
 
 Route::resource('/page/order', 'OrderResellerController');
 
 
 //reseller
 Route::get('/reseller/{page}', "ResellerDashboard@index");
-
+Route::post('/page/order/reseller', ['as' => 'reseller.order','uses' => 'OrderResellerController@order']);
 

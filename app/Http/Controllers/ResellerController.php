@@ -34,7 +34,7 @@ class ResellerController extends Controller
             'domisili'      => $request->domisili,
         ]);
 
-        if ($query && $user) {
+        if ($query) {
             Alert::success("Berhasil!", "Data Reseller Berhasil ditambah!");
             return redirect()->back();
         } else {
@@ -67,8 +67,35 @@ class ResellerController extends Controller
         }
     }
 
+    public function change(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'username' => "required",
+            'password' => 'required',
+        ]);
+
+        $user = User::find($id)->update([
+            'username' => $request->username,
+            'password' => $request->password,
+        ]);
+
+        if ($user) {
+            Alert::success("Berhasil!", "Data Reseller Berhasil diubah!");
+            return redirect()->back();
+        } else {
+            Alert::error("Gagal", "Data Reseller Gagal diubah!");
+            return redirect()->back();
+        }
+
+
+    }
+
     public function destroy($id)
     {
+        $user = Reseller::find($id);
+
+        User::destroy($user->id_user);
+
         $query = Reseller::destroy($id);
 
         if ($query) {
@@ -79,4 +106,5 @@ class ResellerController extends Controller
             return redirect()->back();
         }
     }
+
 }
