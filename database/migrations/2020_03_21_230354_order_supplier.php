@@ -18,7 +18,7 @@ class OrderSupplier extends Migration
             $table->integer('id_barang');
             $table->integer('id_supplier');
             $table->integer('id_kategori');
-            $table->integer('total_order');
+            $table->integer('total_order')->default(0)->nullable();
             $table->integer('total_harga');
             $table->timestamps();
         });

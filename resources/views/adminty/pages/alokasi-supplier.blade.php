@@ -32,7 +32,7 @@
                         @foreach ($order as $or)
                         <tr>
                             <th class="text-center" scope="row">{{$no++}}</th>
-                            <td>{{date('d-m-Y', strtotime($or->created_at))}}</td>
+                            <td>{{date('d-m-Y, h:i', strtotime($or->created_at))}}</td>
                             <td>{{$or->nama_barang}}</td>
                             <td>{{$or->nama_supplier}}</td>
                             <td>{{$or->nama_kategori}}</td>
@@ -69,21 +69,21 @@
                 <h4 class="card-title text-center m-0">{{$ds->nama_supplier}}</h4>
             </div>
             <div class="card-body">
+                @foreach ($barang as $item)
                 <ul class="list-group">
-                    @foreach ($barang as $item)
                     <li class="list-group-item">
-                        {{$item->nama_barang}}: @if($item->jumlah_barang > 0){{ $item->jumlah_barang }} pcs @else 0 pcs @endif
-                            <form action="{{route('barang.stock',$item->id)}}" method="post">
+                        {{$item->nama_barang}}: {{ $item->jumlah_barang }} pcs
+                            <form action="{{route('barang.stock', $item->id)}}" method="post">
                                 @csrf
                                 @method('put')
                                 <div class="form-group">
                                     <div class="input-group mt-1">
-                                        <input type="text" class="form-control @error('total_order') is-invalid @enderror"  onkeypress="return goodchars(event,'1234567890',this)" name="total_order" placeholder="Tambah Stock" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control"  onkeypress="return goodchars(event,'1234567890',this)" name="total_order" placeholder="Tambah Stock" aria-describedby="basic-addon2">
                                         <input type="hidden" name="id_barang" value="{{ $item->id }}">
                                         <input type="hidden" name="id_supplier" value="{{ $item->id_supplier}}">
                                         <input type="hidden" name="id_kategori" value="{{ $item->id_kategori}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#acceptModal"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                                            <button class="btn btn-primary float-right" type="button" data-toggle="modal" data-target="#acceptModal{{ $item->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
                                         </div>
                                         @error('total_order')
                                             <div class="invalid-feedback">
@@ -95,8 +95,8 @@
                                 </div>
                             </form>
                         </li>
-                        @endforeach
                     </ul>
+                    @endforeach
                 </div>
                 <div class="card-footer">
                 </div>

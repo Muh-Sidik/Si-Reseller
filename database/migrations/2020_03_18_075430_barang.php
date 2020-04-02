@@ -19,7 +19,6 @@ class Barang extends Migration
             $table->integer('harga_barang');
             $table->integer('harga_jual');
             $table->integer('jumlah_barang')->nullable();
-            $table->integer('total_beli');
             $table->integer('id_supplier');
             $table->integer('id_kategori');
             $table->timestamps();

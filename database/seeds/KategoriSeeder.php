@@ -16,11 +16,11 @@ class KategoriSeeder extends Seeder
         DB::table('kategori')->insert([
             [
                 'nama_kategori' => 'Pakaian',
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
             [
                 'nama_kategori' => "Selimut",
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
         ]);
     }

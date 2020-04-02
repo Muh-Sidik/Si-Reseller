@@ -114,7 +114,7 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="fa fa-shopping-basket"></i></span>
+                                        <span class="pcoded-micon"><i class="fa fa-money"></i></span>
                                         <span class="pcoded-mtext">Data Penjualan</span>
                                     </a>
                                     <ul class="pcoded-submenu">

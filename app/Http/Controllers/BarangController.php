@@ -80,31 +80,27 @@ class BarangController extends Controller
 
     public function stock(Request $request,$id_barang)
     {
-        $validate = $request->validate([
-            'id_barang'     => "required",
-            'id_supplier'   => "required",
-            'id_kategori'   => "required",
-            'total_order'   => 'required|numeric',
-        ]);
+
 
         $input = $request->input('total_order');
         $find = Barang::find($id_barang);
-        $total = $find->harga_barang *= $input;
 
         $query = Order_Supplier::create([
             'id_barang' => $request->id_barang,
             'id_supplier' => $request->id_supplier,
             'id_kategori' => $request->id_kategori,
             'total_order' => $input,
-            'total_harga' => $total,
+            'total_harga' => $find->harga_barang *= $input,
         ]);
 
-        $barang = Barang::find($id_barang);
-        $barang->jumlah_barang += $input;
+        $item = Barang::find($id_barang);
+        $barang = Barang::find($id_barang)->update([
+            'jumlah_barang' => $item->jumlah_barang += $input,
+        ]);
 
 
-        if ($barang->save() && $query){
-            Alert::success("Berhasil", "Stock ". $barang->nama_barang ." ditambah ". $input);
+        if ($query && $barang){
+            Alert::success("Berhasil", "Stock ". $item->nama_barang ." ditambah ". $input);
             return redirect()->back();
         } else {
             Alert::error("Gagal", "Stock Barang Gagal ditambah!");

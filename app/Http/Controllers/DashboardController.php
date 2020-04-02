@@ -28,6 +28,7 @@ class DashboardController extends Controller
                 $data['total_reseller'] = DB::table('reseller')->count('id');
                 $data['total_supplier'] = DB::table('supplier')->count('id');
                 $data['total_jual'] = DB::table('order_reseller')->count('id');
+                $data['keuntungan'] = DB::table('order_reseller')->sum('keuntungan');
 
             } elseif ($page === 'data-barang') {
                 $data['title']  = "Data Barang";
@@ -37,7 +38,7 @@ class DashboardController extends Controller
                                 ->latest('barang.created_at')
                                 ->get();
 
-                $data['supplier'] = Supplier::get();
+                $data['supplier'] = Supplier::orderByDesc('supplier.created_at')->get();
 
                 $data['kategori'] = Kategori::get();
 
@@ -54,12 +55,12 @@ class DashboardController extends Controller
             } elseif ($page === 'data-reseller') {
 
                 $data['title'] = 'Data Reseller';
-                $data['data'] = Reseller::get();
+                $data['data'] = Reseller::orderByDesc('reseller.created_at')->get();
 
             } elseif ($page === 'data-supplier') {
 
                 $data['title'] = 'Data Supplier';
-                $data['data'] = Supplier::get();
+                $data['data'] = Supplier::orderByDesc('supplier.created_at')->get();
 
             } elseif ($page === 'alokasi-supplier') {
 
@@ -67,17 +68,18 @@ class DashboardController extends Controller
 
                 $data['data'] = Supplier::get();
 
-
                 $data['order'] = Order_Supplier::join('barang', 'barang.id', '=', 'order_supplier.id_barang')
                 ->join('supplier', 'supplier.id', '=', 'order_supplier.id_supplier')
-                ->join('kategori', 'kategori.id', '=', 'order_supplier.id_kategori')->latest('order_supplier.created_at')
+                ->join('kategori', 'kategori.id', '=', 'order_supplier.id_kategori')->orderByDesc('order_supplier.created_at')
                 ->get();
 
             } elseif ($page === 'alokasi-reseller') {
 
                 $data['title'] = "Reseller Order";
-                $data['reseller'] = Reseller::get();
-                $data['barang']   = Barang::get();
+                $data['reseller'] = Reseller::orderByDesc('reseller.created_at')->get();
+
+                $data['barang']   = Barang::orderByDesc('barang.created_at')->get();
+
                 $data['data']     = Order_Reseller::leftJoin('barang', 'barang.id', '=', 'order_reseller.id_barang')
                                     ->leftJoin('reseller', 'reseller.id', '=', 'order_reseller.id_reseller')->orderByDesc('order_reseller.created_at')
                                     ->get();

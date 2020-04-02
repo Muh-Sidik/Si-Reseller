@@ -1,4 +1,4 @@
-<div class="modal fade" id="acceptModal" tabindex="-1" role="dialog" aria-labelledby="acceptModal" aria-hidden="true">
+<div class="modal fade" id="acceptModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="acceptModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">

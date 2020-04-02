@@ -18,19 +18,19 @@ class SupplierSeeder extends Seeder
                 'nama_supplier' => "Toko Bahagia",
                 'alamat'        => "Jogja",
                 'no_hp'         => "082182918274",
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
             [
                 'nama_supplier' => "Toko Online",
                 'alamat'        => "Makassar",
                 'no_hp'         => "082182918274",
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
             [
                 'nama_supplier' => "Jakarta Store",
                 'alamat'        => "Jakarta",
                 'no_hp'         => "082182918274",
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
         ]);
     }

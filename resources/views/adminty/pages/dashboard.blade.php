@@ -77,7 +77,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card bg-instagram update-card">
             <div class="card-block">
                 <div class="row align-items-end">
@@ -95,13 +95,31 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card bg-c-lite-green update-card">
+    <div class="col-md-4">
+        <div class="card bg-facebook update-card">
             <div class="card-block">
                 <div class="row align-items-end">
                     <div class="col-8">
                         <h4 class="text-white">Rp. {{number_format($jual_barang,0,',','.')}}</h4>
                         <h6 class="text-white m-b-0">Hasil Penjualan</h6>
+                    </div>
+                    <div class="col-4 text-right">
+                        <canvas id="update-chart-1" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update : 2:15 am</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-c-lite-green update-card">
+            <div class="card-block">
+                <div class="row align-items-end">
+                    <div class="col-8">
+                        <h4 class="text-white">Rp. {{number_format($keuntungan,0,',','.')}}</h4>
+                        <h6 class="text-white m-b-0">Keuntungan</h6>
                     </div>
                     <div class="col-4 text-right">
                         <canvas id="update-chart-1" height="50"></canvas>

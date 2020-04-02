@@ -21,8 +21,7 @@ class BarangSeeder extends Seeder
                 'id_supplier'  => 2,
                 'id_kategori'  => 1,
                 'jumlah_barang' => 50,
-                'total_beli'    => 3000000,
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
             [
                 'nama_barang' => 'Celana Sirwal',
@@ -31,8 +30,7 @@ class BarangSeeder extends Seeder
                 'id_supplier'  => 2,
                 'id_kategori'  => 1,
                 'jumlah_barang' => 60,
-                'total_beli'    => 4800000,
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
             [
                 'nama_barang' => 'Selimut',
@@ -41,8 +39,7 @@ class BarangSeeder extends Seeder
                 'id_supplier'  => 2,
                 'id_kategori'  => 2,
                 'jumlah_barang' => 20,
-                'total_beli'    => 1200000,
-                'created_at'    => Carbon::now(),
+                'created_at'    => Carbon::now()->timezone('Asia/Jakarta'),
             ],
         ]);
     }

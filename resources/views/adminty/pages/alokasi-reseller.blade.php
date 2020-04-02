@@ -127,7 +127,7 @@
                         @foreach ($data as $or)
                         <tr>
                             <th class="text-center" scope="row">{{$no++}}</th>
-                            <td>{{date('d-m-Y', strtotime($or->created_at))}}</td>
+                            <td>{{date('d-m-Y, h:i' , strtotime($or->created_at))}}</td>
                             <td>{{$or->nama_barang}}</td>
                             <td>{{$or->nama_reseller}}</td>
                             <td>{{$or->total_order}}</td>

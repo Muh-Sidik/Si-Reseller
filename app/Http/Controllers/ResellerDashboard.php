@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\BarangReseller;
+use App\Order_Reseller;
 use App\Penjualan;
 use App\Reseller;
 use App\User;
@@ -23,25 +24,40 @@ class ResellerDashboard extends Controller
             } elseif($page === "penjualan") {
 
                 $data['title'] = "Penjualan";
+
                 $data['auth'] = Reseller::where('id_user', Auth::user()->id)->first();
+
                 $data['reseller'] = Reseller::get();
+
                 $data['barang']  = BarangReseller::where('id_reseller', $data['auth']->id)
+                                ->join('barang', 'barang.id', '=', 'barang_reseller.id')
                                 ->get();
+
                 $data['data']   = Penjualan::where('penjualan.id_reseller', $data['auth']->id)
-                                    ->join('barang_reseller', 'barang_reseller.id', '=', 'penjualan.id_barang_reseller')
+                                    ->join('barang', 'barang.id', '=', 'penjualan.id_barang')
+                                    ->orderByDesc('penjualan.created_at')
                                     ->get();
 
             } elseif ($page === "data-barang") {
 
                 $data['title'] = "Data Barang";
+
                 $data['reseller'] = Reseller::where('id_user', Auth::user()->id)->first();
+
                 $data['barang'] = Barang::get();
+
                 $data['data']  = BarangReseller::where('id_reseller', $data['reseller']->id)
-                                ->join('kategori', 'kategori.id', '=', 'barang_reseller.id_kategori')->get();
+                                ->leftJoin('barang', 'barang.id', '=', 'barang_reseller.id_barang')
+                                ->leftJoin('kategori', 'kategori.id', '=', 'barang_reseller.id_kategori')
+                                ->orderByDesc('barang_reseller.created_at')
+                                ->select('*', 'barang_reseller.id as id', 'barang_reseller.harga_jual as harga_jual', 'barang.harga_jual as harga_jual_item')->get();
+                $data['riwayat'] = Order_Reseller::where('id_reseller', $data['reseller']->id)->leftJoin('barang', 'barang.id', '=', 'order_reseller.id_barang')->orderByDesc('order_reseller.created_at')
+                ->get();
 
             } elseif($page === "profil") {
 
                 $data['title'] = "Profil Reseller";
+
                 $data['reseller'] = Reseller::where('id_user', Auth::user()->id)->first();
             }
         } else {

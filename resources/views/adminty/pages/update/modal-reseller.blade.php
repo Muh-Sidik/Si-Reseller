@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label >Domisili</label>
-                        <input type="text" name="domisili" value="{{ $ds->no_wa }}" class="form-control @error('domisili') is-invalid @enderror" id="domisili" required placeholder="Masukkan Domisili">
+                        <input type="text" name="domisili" value="{{ $ds->domisili }}" class="form-control @error('domisili') is-invalid @enderror" id="domisili" required placeholder="Masukkan Domisili">
                         @error('domisili')
                             <div class="invalid-feedback">
                                 Domisili harus diisi!

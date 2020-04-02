@@ -16,7 +16,7 @@ class Penjualan extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_reseller');
-            $table->integer('id_barang_reseller');
+            $table->integer('id_barang');
             $table->integer('jumlah_jual');
             $table->integer('total_jual');
             $table->integer('keuntungan');

@@ -14,12 +14,6 @@ class OrderResellerController extends Controller
     {
 
 
-        // $validate = $request->validate([
-        //     'total_order'   => "required|numeric",
-        //     'harga_jual'    => "required",
-        //     'id_barang'     => "required",
-        // ]);
-
         $input = $request->input('id_barang');
         $total_order = $request->input('total_order');
         $barang = Barang::find($input);
@@ -28,28 +22,37 @@ class OrderResellerController extends Controller
             'jumlah_barang' => $barang->jumlah_barang -= $total_order,
         ]);
 
-        $barang->harga_barang * $total_order;
-        $barang->harga_jual * $total_order;
+        $modal = $barang->harga_barang * $total_order;
+        $jual = $barang->harga_jual * $total_order;
 
         $query = Order_Reseller::create([
             'id_reseller'   => $request->id_reseller,
             'id_barang'     => $input,
             'total_order'   => $total_order,
-            'total_harga'   => $barang->harga_jual,
-            'keuntungan'    => $barang->harga_jual -= $barang->harga_beli,
+            'total_harga'   => $barang->harga_jual * $total_order,
+            'keuntungan'    => $jual -= $modal,
         ]);
 
         $item = Barang::find($input);
+        $barang = BarangReseller::where('id_barang', $input)->count();
+        $first = BarangReseller::where('id_barang', $input)->first();
 
-        $reseller = BarangReseller::create([
-            'id_reseller'       => $request->id_reseller,
-            'nama_barang'       => $item->nama_barang,
-            'stock_barang'      => $total_order,
-            'id_kategori'       => $item->id_kategori,
-            'harga_beli'        => $item->harga_jual,
-            'total_beli'        => $item->harga_jual *= $total_order,
-        ]);
-
+        if ($barang > 0) {
+            $tambah = $first->total_beli * $total_order;
+            $reseller = BarangReseller::where('id_barang', $input)->update([
+                'stock_barang'   => $first->stock_barang + $total_order,
+                'total_beli'     => $first->total_beli + $tambah,
+            ]);
+        } else {
+            $reseller = BarangReseller::create([
+                'id_reseller'       => $request->id_reseller,
+                'id_barang'         => $item->id,
+                'stock_barang'      => $total_order,
+                'id_kategori'       => $item->id_kategori,
+                'harga_beli'        => $item->harga_jual,
+                'total_beli'        => $item->harga_jual *= $total_order,
+            ]);
+        }
 
         if ($query && $reseller) {
             Alert::success("Berhasil!", "Order Reseller Berhasil!");
@@ -100,21 +103,30 @@ class OrderResellerController extends Controller
             'id_reseller'   => $request->id_reseller,
             'id_barang'     => $input,
             'total_order'   => $total_order,
-            'total_harga'   => $barang->harga_jual,
-            'keuntungan'    => $jual - $modal,
+            'total_harga'   => $barang->harga_jual * $total_order,
+            'keuntungan'    => $jual -= $modal,
         ]);
 
         $item = Barang::find($input);
+        $barang = BarangReseller::where('id_barang', $input)->count();
+        $first = BarangReseller::where('id_barang', $input)->first();
 
-        $reseller = BarangReseller::create([
-            'id_reseller'       => $request->id_reseller,
-            'nama_barang'       => $item->nama_barang,
-            'stock_barang'      => $total_order,
-            'id_kategori'       => $item->id_kategori,
-            'harga_beli'        => $item->harga_jual,
-            'harga_jual'        => $request->harga,
-            'total_beli'        => $item->harga_jual *= $total_order,
-        ]);
+        if ($barang > 0) {
+            $tambah = $first->total_beli * $total_order;
+            $reseller = BarangReseller::where('id_barang', $input)->update([
+                'stock_barang'   => $first->stock_barang + $total_order,
+                'total_beli'     => $first->total_beli + $tambah,
+            ]);
+        } else {
+            $reseller = BarangReseller::create([
+                'id_reseller'       => $request->id_reseller,
+                'id_barang'         => $item->id,
+                'stock_barang'      => $total_order,
+                'id_kategori'       => $item->id_kategori,
+                'harga_beli'        => $item->harga_jual,
+                'total_beli'        => $item->harga_jual *= $total_order,
+            ]);
+        }
 
 
         if ($query && $reseller) {
@@ -128,6 +140,10 @@ class OrderResellerController extends Controller
 
     public function updateHarga(Request $request, $id)
     {
+        $validate= $request->validate([
+            'harga_jual'    => 'required',
+        ]);
+
         $query = BarangReseller::find($id)->update([
             'harga_jual'    => $request->harga_jual,
         ]);

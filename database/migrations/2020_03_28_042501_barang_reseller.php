@@ -16,11 +16,11 @@ class BarangReseller extends Migration
         Schema::create('barang_reseller', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_reseller');
-            $table->string('nama_barang');
+            $table->integer('id_barang');
             $table->integer('stock_barang');
             $table->integer('id_kategori');
             $table->integer('harga_beli');
-            $table->integer('harga_jual')->nullable();
+            $table->integer('harga_jual')->default(0)->nullable();
             $table->integer('total_beli');
             $table->timestamps();
         });

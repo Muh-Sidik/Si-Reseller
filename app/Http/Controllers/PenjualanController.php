@@ -5,41 +5,39 @@ namespace App\Http\Controllers;
 use App\BarangReseller;
 use App\Penjualan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenjualanController extends Controller
 {
 
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'id_barang_reseller'    => 'required',
-            'jumlah_jual'           => 'required',
-        ]);
 
         $input = $request->input('id_barang');
         $order = $request->input('order');
         $barang = BarangReseller::find($input);
+        dd($barang);
 
-        BarangReseller::find($input)->update([
+        $update = BarangReseller::find($input)->update([
             'stock_barang'  => $barang->stock_barang -= $order,
         ]);
 
-        $modal = $barang->harga_beli *= $order;
-        $jual = $barang->harga_jual *= $order;
+        $modal = $barang->harga_beli * $order;
+        $jual = $barang->harga_jual * $order;
 
         $query = Penjualan::create([
-            'id_reseller' => $request->id_reseller,
-            'id_barang_reseller' => $input,
+            'id_reseller'   => $request->id_reseller,
+            'id_barang'     => $input,
             'jumlah_jual'   => $order,
-            'total_jual'    => $barang->harga_jual,
+            'total_jual'    => $barang->harga_jual *= $order,
             'keuntungan'    => $jual -= $modal,
         ]);
 
-        if ($query) {
-            Alert::success("Berhasil!", "Penjualan Berhasil dihapus!");
+        if ($query && $update) {
+            Alert::success("Berhasil!", "Penjualan Berhasil!");
             return redirect()->back();
         } else {
-            Alert::error("Gagal", "Penjualan Gagal dihapus!");
+            Alert::error("Gagal", "Penjualan Gagal!");
             return redirect()->back();
         }
 
@@ -73,6 +71,7 @@ class PenjualanController extends Controller
         BarangReseller::find($order->id_barang)->update([
             'stock_barang' => $barang->stock_barang += $total_order,
         ]);
+
         $query = Penjualan::destroy($id);
 
         if ($query) {

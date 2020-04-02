@@ -32,4 +32,6 @@ Route::resource('/page/order', 'OrderResellerController');
 //reseller
 Route::get('/reseller/{page}', "ResellerDashboard@index");
 Route::post('/page/order/reseller', ['as' => 'reseller.order','uses' => 'OrderResellerController@order']);
+Route::put('/page/update/harga/{id}', ['as' => 'update.harga', 'uses' => 'OrderResellerController@updateHarga']);
+Route::resource('/page/penjualan', 'PenjualanController');
 
