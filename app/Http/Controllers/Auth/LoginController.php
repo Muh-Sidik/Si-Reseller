@@ -27,6 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     protected function authenticated() {
+        
         if(Auth::user()->level === "admin") {
 
             return redirect('/admin/dashboard');

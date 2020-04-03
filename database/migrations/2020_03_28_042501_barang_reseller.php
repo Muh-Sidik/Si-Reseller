@@ -21,7 +21,6 @@ class BarangReseller extends Migration
             $table->integer('id_kategori');
             $table->integer('harga_beli');
             $table->integer('harga_jual')->default(0)->nullable();
-            $table->integer('total_beli');
             $table->timestamps();
         });
     }

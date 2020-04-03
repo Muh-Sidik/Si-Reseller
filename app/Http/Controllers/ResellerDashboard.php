@@ -51,7 +51,7 @@ class ResellerDashboard extends Controller
                                 ->leftJoin('kategori', 'kategori.id', '=', 'barang_reseller.id_kategori')
                                 ->orderByDesc('barang_reseller.created_at')
                                 ->select('*', 'barang_reseller.id as id', 'barang_reseller.harga_jual as harga_jual', 'barang.harga_jual as harga_jual_item')->get();
-                $data['riwayat'] = Order_Reseller::where('id_reseller', $data['reseller']->id)->leftJoin('barang', 'barang.id', '=', 'order_reseller.id_barang')->orderByDesc('order_reseller.created_at')
+                $data['riwayat'] = Order_Reseller::where('id_reseller', $data['reseller']->id)->join('barang', 'barang.id', '=', 'order_reseller.id_barang')->orderByDesc('order_reseller.created_at')
                 ->get();
 
             } elseif($page === "profil") {
@@ -65,5 +65,16 @@ class ResellerDashboard extends Controller
         }
 
         return view("reseller.pages.".$page, compact('page'))->with($data);
+    }
+
+    public function chartReseller(Request $request) {
+        $reseller = Reseller::where('id_user', Auth::user()->id);
+
+        foreach ($request->bulan as $key => $value) {
+            $bulan[$key] = Order_Reseller::where('id_reseller', $reseller->id)->whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', $value)->sum('keuntungan');
+        }
+
+        return response()->json($bulan);
     }
 }

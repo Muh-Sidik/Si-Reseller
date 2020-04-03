@@ -9,6 +9,7 @@ use App\Order_Supplier;
 use App\Reseller;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 
@@ -76,9 +77,9 @@ class DashboardController extends Controller
             } elseif ($page === 'alokasi-reseller') {
 
                 $data['title'] = "Reseller Order";
-                $data['reseller'] = Reseller::orderByDesc('reseller.created_at')->get();
+                $data['reseller'] = Reseller::get();
 
-                $data['barang']   = Barang::orderByDesc('barang.created_at')->get();
+                $data['barang']   = Barang::get();
 
                 $data['data']     = Order_Reseller::leftJoin('barang', 'barang.id', '=', 'order_reseller.id_barang')
                                     ->leftJoin('reseller', 'reseller.id', '=', 'order_reseller.id_reseller')->orderByDesc('order_reseller.created_at')
@@ -94,9 +95,10 @@ class DashboardController extends Controller
     public function chartJual(Request $request) {
         foreach ($request->bulan as $key => $value) {
             $bulan[$key] = Order_Reseller::whereYear('created_at', date('Y'))
-                            ->whereMonth('created_at', $value)->sum('total_harga');
+                            ->whereMonth('created_at', $value)->sum('keuntungan');
         }
 
         return response()->json($bulan);
     }
+
 }

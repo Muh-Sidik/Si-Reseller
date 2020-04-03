@@ -38,19 +38,16 @@ class OrderResellerController extends Controller
         $first = BarangReseller::where('id_barang', $input)->first();
 
         if ($barang > 0) {
-            $tambah = $first->total_beli * $total_order;
             $reseller = BarangReseller::where('id_barang', $input)->update([
                 'stock_barang'   => $first->stock_barang + $total_order,
-                'total_beli'     => $first->total_beli + $tambah,
             ]);
         } else {
             $reseller = BarangReseller::create([
                 'id_reseller'       => $request->id_reseller,
-                'id_barang'         => $item->id,
+                'id_barang'         => $request->id_barang,
                 'stock_barang'      => $total_order,
                 'id_kategori'       => $item->id_kategori,
                 'harga_beli'        => $item->harga_jual,
-                'total_beli'        => $item->harga_jual *= $total_order,
             ]);
         }
 
@@ -112,19 +109,16 @@ class OrderResellerController extends Controller
         $first = BarangReseller::where('id_barang', $input)->first();
 
         if ($barang > 0) {
-            $tambah = $first->total_beli * $total_order;
             $reseller = BarangReseller::where('id_barang', $input)->update([
                 'stock_barang'   => $first->stock_barang + $total_order,
-                'total_beli'     => $first->total_beli + $tambah,
             ]);
         } else {
             $reseller = BarangReseller::create([
                 'id_reseller'       => $request->id_reseller,
-                'id_barang'         => $item->id,
+                'id_barang'         => $request->id_barang,
                 'stock_barang'      => $total_order,
                 'id_kategori'       => $item->id_kategori,
                 'harga_beli'        => $item->harga_jual,
-                'total_beli'        => $item->harga_jual *= $total_order,
             ]);
         }
 

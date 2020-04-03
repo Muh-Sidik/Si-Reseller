@@ -133,55 +133,35 @@
 
 @push('script')
 <script>
-// var date = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12]
-// axios({
-//     method: 'POST',
-//     url: '{{ url("api/page/chart/penjualan") }}',
-//     data: {
-//         bulan: date,
-//     }
-// })
-// .then((response) => {
-//     var ctx = document.getElementById('lineChart').getContext('2d');
-// var chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'line',
+    var date = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12]
+    axios({
+        method: 'POST',
+        url: '{{ url("api/page/chart/reseller/profit") }}',
+        data: {
+            bulan: date,
+        }
+    })
+    .then((response) => {
+        var ctx = document.getElementById('lineChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
 
-//     // The data for our dataset
-//     data: {
-//         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-//         datasets: [{
-//             label: 'Hasil Penjualan (Rp. )',
-//             backgroundColor: 'rgb(135,206,250)',
-//             borderColor: 'rgb(0,191,255)',
-//             data: response.data
-//         }]
-//     },
+        // The data for our dataset
+        data: {
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+            datasets: [{
+                label: 'Keuntungan (Rp. )',
+                backgroundColor: 'rgb(135,206,250)',
+                borderColor: 'rgb(0,191,255)',
+                data: response.data
+            }]
+        },
 
-//     // Configuration options go here
-//     options: {}
-// });
-// })
-
-var ctx = document.getElementById('lineChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-        datasets: [{
-            label: 'Hasil Penjualan (Rp. )',
-            backgroundColor: 'rgb(135,206,250)',
-            borderColor: 'rgb(0,191,255)',
-            // data: response.data
-        }]
-    },
-
-    // Configuration options go here
-    options: {}
-});
+        // Configuration options go here
+        options: {}
+    });
+    })
 
 
 

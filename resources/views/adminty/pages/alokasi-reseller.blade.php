@@ -2,7 +2,7 @@
 
 @section('content')
 {{-- @php
-    dd($data);
+    dd($reseller);
 @endphp --}}
 <div class="row">
     <div class="col-md">

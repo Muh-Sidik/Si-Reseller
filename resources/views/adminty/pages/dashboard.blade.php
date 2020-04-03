@@ -154,7 +154,7 @@
 var date = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12]
 axios({
     method: 'POST',
-    url: '{{ url("api/page/chart/penjualan") }}',
+    url: '{{ url("api/page/chart/profit") }}',
     data: {
         bulan: date,
     }
@@ -169,7 +169,7 @@ var chart = new Chart(ctx, {
     data: {
         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
         datasets: [{
-            label: 'Hasil Penjualan (Rp. )',
+            label: 'Keuntungan (Rp. )',
             backgroundColor: 'rgb(135,206,250)',
             borderColor: 'rgb(0,191,255)',
             data: response.data

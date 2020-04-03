@@ -17,4 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/page/chart/penjualan', 'DashboardController@chartJual');
+Route::post('/page/chart/profit', 'DashboardController@chartJual');
+
+Route::post('/page/chart/reseller/profit', 'ResellerDashboard@chartReseller');

@@ -5,6 +5,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::get('logout', function () {
     Auth::logout();
     return redirect('/');
@@ -13,7 +17,7 @@ Route::get('logout', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 //admin
 Route::get('/admin/{page}', 'DashboardController@index');
 //route web
