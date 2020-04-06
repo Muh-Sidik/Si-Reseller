@@ -8,6 +8,7 @@ use App\Order_Reseller;
 use App\Penjualan;
 use App\Reseller;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -20,6 +21,14 @@ class ResellerDashboard extends Controller
             if($page === "dashboard") {
 
                 $data['title'] = "Dashboard";
+
+                $data['reseller'] = Reseller::where('id_user', Auth::user()->id)->first();
+
+                $data['beli_barang'] = DB::table('order_reseller')->where('id_reseller', $data['reseller']->id)->sum('total_harga');
+                $data['total_barang'] = DB::table('barang_reseller')->where('id_reseller', $data['reseller']->id)->count('stock_barang');
+                $data['hasil_jual'] = DB::table('penjualan')->where('id_reseller', $data['reseller']->id)->sum('jumlah_jual');
+                $data['total_jual'] = DB::table('penjualan')->where('id_reseller', $data['reseller']->id)->sum('total_jual');
+                $data['keuntungan'] = DB::table('penjualan')->where('id_reseller', $data['reseller']->id)->sum('keuntungan');
 
             } elseif($page === "penjualan") {
 
@@ -35,7 +44,6 @@ class ResellerDashboard extends Controller
 
                 $data['data']   = Penjualan::where('penjualan.id_reseller', $data['auth']->id)
                                     ->join('barang', 'barang.id', '=', 'penjualan.id_barang')
-                                    ->orderByDesc('penjualan.created_at')
                                     ->get();
 
             } elseif ($page === "data-barang") {

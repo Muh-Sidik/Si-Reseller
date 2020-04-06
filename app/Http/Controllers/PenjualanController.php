@@ -12,13 +12,17 @@ class PenjualanController extends Controller
 
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'order' => 'required',
+            'id_barang'   => 'required',
+        ]);
 
         $input = $request->input('id_barang');
         $order = $request->input('order');
-        $barang = BarangReseller::find($input);
-        dd($barang);
+        $barang = BarangReseller::where('id_barang', '=' ,$input)
+                    ->where('id_reseller', '=' ,$request->id_reseller);
 
-        $update = BarangReseller::find($input)->update([
+        BarangReseller::where('id_barang', $input)->where('id_reseller', $request->id_reseller)->update([
             'stock_barang'  => $barang->stock_barang -= $order,
         ]);
 
@@ -33,7 +37,7 @@ class PenjualanController extends Controller
             'keuntungan'    => $jual -= $modal,
         ]);
 
-        if ($query && $update) {
+        if ($query) {
             Alert::success("Berhasil!", "Penjualan Berhasil!");
             return redirect()->back();
         } else {

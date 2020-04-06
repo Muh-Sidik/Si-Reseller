@@ -152,7 +152,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="{{url('')}}">
+                                    <a href="{{url('/reseller/dashboard')}}">
                                         <span class="pcoded-micon"><i class="fa fa-envelope"></i></span>
                                         <span class="pcoded-mtext">Saran untuk Sistem</span>
                                     </a>

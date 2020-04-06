@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Barang;
 use App\BarangReseller;
 use App\Order_Reseller;
+use App\Reseller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderResellerController extends Controller
 {
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'total_order' => 'required',
+            'id_barang'   => 'required',
+        ]);
 
 
         $input = $request->input('id_barang');
@@ -34,11 +41,15 @@ class OrderResellerController extends Controller
         ]);
 
         $item = Barang::find($input);
-        $barang = BarangReseller::where('id_barang', $input)->count();
-        $first = BarangReseller::where('id_barang', $input)->first();
+        $barang = BarangReseller::where('id_barang', $input)
+                    ->where('id_reseller', $request->id_reseller)->count();
+        $first = BarangReseller::where('id_barang', $input)
+                ->where('id_reseller', $request->id_reseller)->first();
 
         if ($barang > 0) {
-            $reseller = BarangReseller::where('id_barang', $input)->update([
+            $reseller = BarangReseller::where('id_barang', $input)
+            ->where('id_reseller', $request->id_reseller)
+            ->update([
                 'stock_barang'   => $first->stock_barang + $total_order,
             ]);
         } else {
@@ -83,7 +94,10 @@ class OrderResellerController extends Controller
     public function order(Request $request)
     {
 
-
+        $validate = $request->validate([
+            'total_order' => 'required',
+            'id_barang'   => 'required',
+        ]);
 
         $input = $request->input('id_barang');
         $total_order = $request->input('total_order');
@@ -105,11 +119,19 @@ class OrderResellerController extends Controller
         ]);
 
         $item = Barang::find($input);
-        $barang = BarangReseller::where('id_barang', $input)->count();
-        $first = BarangReseller::where('id_barang', $input)->first();
+
+        $reseller = Reseller::where('id_user', Auth::user()->id)->first();
+        $barang = BarangReseller::where('id_barang', $input)
+                    ->where('id_reseller', $request->id_reseller)->count();
+
+        $first = BarangReseller::where('id_barang', $input)
+                    ->where('id_reseller', $request->id_reseller)
+                    ->first();
 
         if ($barang > 0) {
-            $reseller = BarangReseller::where('id_barang', $input)->update([
+            $reseller = BarangReseller::where('id_barang', $input)
+            ->where('id_reseller', $request->id_reseller)
+            ->update([
                 'stock_barang'   => $first->stock_barang + $total_order,
             ]);
         } else {

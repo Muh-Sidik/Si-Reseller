@@ -28,7 +28,9 @@
             $('.datatable').DataTable();
         } );
     </script>
+
     @stack('script')
+    
     <script>
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy',
