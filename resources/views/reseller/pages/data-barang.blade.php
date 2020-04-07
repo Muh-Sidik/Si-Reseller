@@ -41,7 +41,7 @@
                             <td>{{$ds->nama_barang}}</td>
                             <td>Rp. {{number_format($ds->harga_beli,0,',','.')}}</td>
                             <td>Rp. {{number_format($ds->harga_jual,0,',','.')}}</td>
-                            <td>{{$ds->stock_barang}}</td>
+                            <td>{{$ds->stock}}</td>
                             <td>{{$ds->nama_kategori}}</td>
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="">

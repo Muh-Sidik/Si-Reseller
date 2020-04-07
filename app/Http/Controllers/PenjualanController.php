@@ -19,11 +19,10 @@ class PenjualanController extends Controller
 
         $input = $request->input('id_barang');
         $order = $request->input('order');
-        $barang = BarangReseller::where('id_barang', '=' ,$input)
-                    ->where('id_reseller', '=' ,$request->id_reseller);
+        $barang = BarangReseller::where('id_barang', $input)->where('id_reseller', $request->id_reseller)->first();
 
         BarangReseller::where('id_barang', $input)->where('id_reseller', $request->id_reseller)->update([
-            'stock_barang'  => $barang->stock_barang -= $order,
+            'stock'  => $barang->stock -= $order,
         ]);
 
         $modal = $barang->harga_beli * $order;

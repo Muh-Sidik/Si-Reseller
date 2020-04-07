@@ -23,7 +23,7 @@
                             <select id="id_barang" name="id_barang" class="form-control @error('id_barang') is-invalid @enderror">
                                 <option selected>-- Pilih Barang --</option>
                                 @foreach ($barang as $item)
-                                    <option value="{{$item->id}}">{{ $item->nama_barang }}, stock: {{ $item->stock_barang }}</option>
+                                    <option value="{{$item->id}}">{{ $item->nama_barang }}, stock: {{ $item->stock }}</option>
                                 @endforeach
                             </select>
                             @error('id_barang')

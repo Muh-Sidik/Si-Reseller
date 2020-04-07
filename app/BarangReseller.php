@@ -8,6 +8,6 @@ class BarangReseller extends Model
 {
     protected $table = "barang_reseller";
     protected $fillable =[
-        'id_reseller', 'id_barang', 'stock_barang', 'id_kategori', 'harga_beli', 'harga_jual'
+        'id_reseller', 'id_barang', 'stock' , 'id_kategori', 'harga_beli', 'harga_jual'
     ];
 }

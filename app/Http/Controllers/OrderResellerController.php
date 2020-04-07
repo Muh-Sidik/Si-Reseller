@@ -50,13 +50,13 @@ class OrderResellerController extends Controller
             $reseller = BarangReseller::where('id_barang', $input)
             ->where('id_reseller', $request->id_reseller)
             ->update([
-                'stock_barang'   => $first->stock_barang + $total_order,
+                'stock'   => $first->stock + $total_order,
             ]);
         } else {
             $reseller = BarangReseller::create([
                 'id_reseller'       => $request->id_reseller,
                 'id_barang'         => $request->id_barang,
-                'stock_barang'      => $total_order,
+                'stock'             => $total_order,
                 'id_kategori'       => $item->id_kategori,
                 'harga_beli'        => $item->harga_jual,
             ]);
@@ -132,13 +132,13 @@ class OrderResellerController extends Controller
             $reseller = BarangReseller::where('id_barang', $input)
             ->where('id_reseller', $request->id_reseller)
             ->update([
-                'stock_barang'   => $first->stock_barang + $total_order,
+                'stock'   => $first->stock + $total_order,
             ]);
         } else {
             $reseller = BarangReseller::create([
                 'id_reseller'       => $request->id_reseller,
                 'id_barang'         => $request->id_barang,
-                'stock_barang'      => $total_order,
+                'stock'              => $total_order,
                 'id_kategori'       => $item->id_kategori,
                 'harga_beli'        => $item->harga_jual,
             ]);

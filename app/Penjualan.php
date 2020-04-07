@@ -8,6 +8,6 @@ class Penjualan extends Model
 {
     protected $table = "penjualan";
     protected $fillable = [
-        'id_reseller', 'id_barang', 'jumlah_jual', 'keuntungan', 'total_jual'
+        'id_reseller', 'id_barang', 'jumlah_jual','keuntungan', 'total_jual'
     ];
 }

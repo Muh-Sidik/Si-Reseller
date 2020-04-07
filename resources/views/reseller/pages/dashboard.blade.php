@@ -103,7 +103,7 @@
             <div class="panel-heading"></div>
 
             <div class="panel-body">
-                <canvas id="Chart" width="400" height="200"></canvas>
+                <canvas id="idChart" width="300" height="200"></canvas>
             </div>
 
         </div>
@@ -116,6 +116,7 @@
 @push('script')
 <script>
     var date = [01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12]
+    console.log(date)
     axios({
         method: 'POST',
         url: '{{ url("api/page/chart/reseller/profit") }}',
@@ -125,7 +126,7 @@
     })
     .then((response) => {
         var ctx = document.getElementById('Chart').getContext('2d');
-    var chart = new Chart(ctx, {
+        var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'line',
 
@@ -144,6 +145,25 @@
         options: {}
     });
     })
+
+    // var ctx = document.getElementById('idChart').getContext('2d');
+    //     var chart = new Chart(ctx, {
+    //     // The type of chart we want to create
+    //     type: 'line',
+
+    //     // The data for our dataset
+    //     data: {
+    //         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+    //         datasets: [{
+    //             label: 'Keuntungan (Rp. )',
+    //             backgroundColor: 'rgb(135,206,250)',
+    //             borderColor: 'rgb(0,191,255)',
+    //             data: response.data,
+    //         }]
+    //     },
+
+    //     // Configuration options go here
+    //     options: {}
 
 
 

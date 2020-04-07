@@ -17,7 +17,7 @@ class BarangReseller extends Migration
             $table->bigIncrements('id');
             $table->integer('id_reseller');
             $table->integer('id_barang');
-            $table->integer('stock_barang');
+            $table->integer('stock');
             $table->integer('id_kategori');
             $table->integer('harga_beli');
             $table->integer('harga_jual')->default(0)->nullable();
