@@ -23,6 +23,7 @@
                         <tr>
                             <th width="3%" scope="col">No.</th>
                             <th scope="col" width="120px" class="text-center">Nama Reseller</th>
+                            <th scope="col" width="120px" class="text-center">Nama Toko</th>
                             <th scope="col" width="120px" class="text-center">No. Whatsapp</th>
                             <th scope="col" width="120px" class="text-center">Domisili</th>
                             <th scope="col" width="120px" class="text-center">Aksi</th>
@@ -36,6 +37,7 @@
                         <tr>
                             <th class="text-center" scope="row">{{$no++}}</th>
                             <td>{{$ds->nama_reseller}}</td>
+                            <td>{{$ds->nama_toko}}</td>
                             <td>{{$ds->no_wa}}</td>
                             <td>{{$ds->domisili}}</td>
                             <td class="text-center">

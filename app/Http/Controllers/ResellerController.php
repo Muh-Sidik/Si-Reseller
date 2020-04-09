@@ -15,6 +15,7 @@ class ResellerController extends Controller
     {
         $validate = $request->validate([
             'nama_reseller' => "required",
+            'nama_toko' => "required",
             'no_wa'         => 'required|numeric',
             'domisili'      =>  "required",
             'username'      => 'required',
@@ -30,6 +31,7 @@ class ResellerController extends Controller
         $query = Reseller::create([
             'id_user'       => $user->id,
             'nama_reseller' => $request->nama_reseller,
+            'nama_toko' => $request->nama_toko,
             'no_wa'         => $request->no_wa,
             'domisili'      => $request->domisili,
         ]);
@@ -54,6 +56,7 @@ class ResellerController extends Controller
 
         $query = Reseller::find($id)->update([
             'nama_reseller' => $request->nama_reseller,
+            'nama_toko' => $request->nama_toko,
             'no_wa'         => $request->no_wa,
             'domisili'      => $request->domisili,
         ]);

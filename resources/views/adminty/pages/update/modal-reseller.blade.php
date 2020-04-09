@@ -23,6 +23,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label >Nama Reseller</label>
+                        <input type="text" name="nama_toko" value="{{ $ds->nama_toko }}" class="form-control @error('nama_toko') is-invalid @enderror" id="nama_toko" required placeholder="Masukkan Nama Toko">
+                        @error('nama_toko')
+                            <div class="invalid-feedback">
+                                Nama Reseller harus diisi!
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label >Nomor Whatsapp</label>
                         <input type="text" name="no_wa" onkeypress="return goodchars(event,'1234567890',this)" value="{{ $ds->no_wa }}" class="form-control @error('no_wa') is-invalid @enderror" id="no_wa" required placeholder="Masukkan Nomor">
                         @error('no_wa')

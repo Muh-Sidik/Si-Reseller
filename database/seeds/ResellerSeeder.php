@@ -14,7 +14,8 @@ class ResellerSeeder extends Seeder
     {
         DB::table('reseller')->insert([
             [
-                'nama_reseller' => "Toko 1",
+                'nama_reseller' => "sidiq",
+                'nama_toko' => "Toko 1",
                 'no_wa'         => "082182918274",
                 'domisili'      => "Jogja",
                 'id_user'       => 2,

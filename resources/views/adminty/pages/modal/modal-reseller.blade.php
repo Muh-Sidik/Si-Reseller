@@ -22,6 +22,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label >Nama Toko</label>
+                        <input type="text" name="nama_toko" class="form-control @error('nama_toko') is-invalid @enderror" id="nama_toko" required placeholder="Masukkan Nama Toko">
+                        @error('nama_toko')
+                            <div class="invalid-feedback">
+                                Nama Toko harus diisi!
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label >Username</label>
                         <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="username" required placeholder="Masukkan Username Reseller">
                         @error('username')

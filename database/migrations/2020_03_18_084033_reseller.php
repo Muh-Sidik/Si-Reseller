@@ -17,6 +17,7 @@ class Reseller extends Migration
             $table->bigIncrements('id');
             $table->integer('id_user');
             $table->string('nama_reseller');
+            $table->string('nama_toko');
             $table->string('no_wa');
             $table->string('domisili');
             $table->timestamps();

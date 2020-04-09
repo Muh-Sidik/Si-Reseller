@@ -12,6 +12,7 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('files\assets\pages\user-profile.js') }}"></script>
     <script src="{{ asset('files\assets\pages\widget\amchart\amcharts.js') }}"></script>
     <script src="{{ asset('files\assets\pages\widget\amchart\serial.js') }}"></script>
     <script src="{{ asset('files\assets\pages\widget\amchart\light.js') }}"></script>
@@ -30,7 +31,7 @@
     </script>
 
     @stack('script')
-    
+
     <script>
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy',

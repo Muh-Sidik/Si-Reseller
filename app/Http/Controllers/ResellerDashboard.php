@@ -42,6 +42,7 @@ class ResellerDashboard extends Controller
 
                 $data['data']   = Penjualan::where('penjualan.id_reseller', $data['auth']->id)
                                     ->join('barang', 'barang.id', '=', 'penjualan.id_barang')
+                                    ->orderByDesc('penjualan.created_at')
                                     ->get();
 
             } elseif ($page === "data-barang") {
@@ -77,7 +78,7 @@ class ResellerDashboard extends Controller
     public function chartReseller(Request $request) {
 
         $reseller = Reseller::where('id_user', Auth::user()->id)->first();
-        
+
         foreach ($request->bulan as $key => $value) {
             $bulan[$key] = Penjualan::where('id_reseller', $reseller->id)->whereYear('created_at', date('Y'))
                             ->whereMonth('created_at', $value)->sum('keuntungan');
